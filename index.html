@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SugarFun 專案流程 SKILL 總覽</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #222636;
+      --border: #2e3249;
+      --accent: #6c63ff;
+      --accent2: #00c4a7;
+      --warn: #f59e0b;
+      --text: #e2e8f0;
+      --text-muted: #718096;
+      --green: #48bb78;
+      --draft: #f6ad55;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1a1d27 0%, #12152a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      width: 48px; height: 48px;
+      background: var(--accent);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+    header p { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.2rem; }
+
+    .stats {
+      margin-left: auto;
+      display: flex; gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-val { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* Pipeline */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 1.5rem 3rem;
+      overflow-x: auto;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pipeline-step {
+      display: flex; align-items: center; gap: 0;
+      flex-shrink: 0;
+    }
+
+    .pipeline-badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .pipeline-badge:hover,
+    .pipeline-badge.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .pipeline-arrow {
+      color: var(--border);
+      padding: 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* Main */
+    main { padding: 2.5rem 3rem; }
+
+    /* Phase Section */
+    .phase {
+      margin-bottom: 3rem;
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .phase-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .phase-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .phase-count {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .phase-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Cards grid */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      transition: all 0.2s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--phase-color, var(--accent));
+    }
+
+    .card:hover {
+      border-color: var(--phase-color, var(--accent));
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-num {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-family: monospace;
+      background: var(--surface2);
+      border-radius: 4px;
+      padding: 0.1rem 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .card-status {
+      font-size: 0.7rem;
+      border-radius: 20px;
+      padding: 0.15rem 0.55rem;
+      flex-shrink: 0;
+      font-weight: 500;
+    }
+
+    .status-done {
+      background: rgba(72,187,120,0.15);
+      color: var(--green);
+      border: 1px solid rgba(72,187,120,0.3);
+    }
+
+    .status-draft {
+      background: rgba(246,173,85,0.15);
+      color: var(--draft);
+      border: 1px solid rgba(246,173,85,0.3);
+    }
+
+    .card-name {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.1rem 0.5rem;
+      color: var(--text-muted);
+    }
+
+    .card-next {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .card-next .next-cmd {
+      color: var(--phase-color, var(--accent));
+      font-family: monospace;
+    }
+
+    /* Flow diagram */
+    .flow-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .flow-section h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .flow-node {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .flow-pill {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.78rem;
+      font-family: monospace;
+      white-space: nowrap;
+    }
+
+    .flow-pill.done { border-color: rgba(72,187,120,0.4); color: var(--green); }
+    .flow-pill.draft { border-color: rgba(246,173,85,0.4); color: var(--draft); }
+
+    .flow-arrow { color: var(--text-muted); font-size: 0.85rem; }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; color: var(--text-muted);
+    }
+
+    .legend-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+
+    /* Special card for optimizer */
+    .card.optimizer {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .optimizer-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .optimizer-body { flex: 1; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header { padding: 1.5rem; flex-wrap: wrap; }
+      .stats { margin-left: 0; }
+      main { padding: 1.5rem; }
+      .pipeline { padding: 1rem 1.5rem; }
+      .card.optimizer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🍬</div>
+  <div>
+    <h1>SugarFun 專案流程 SKILL 總覽</h1>
+    <p>從提案到上線的完整標準作業流程</p>
+  </div>
+  <div class="stats">
+    <div>
+      <div class="stat-val">23</div>
+      <div class="stat-label">Total SKILLs</div>
+    </div>
+    <div>
+      <div class="stat-val" style="color:var(--green)">8</div>
+      <div class="stat-label">完整</div>
+    </div>
+    <div>
+      <div class="stat-val" style="color:var(--draft)">15</div>
+      <div class="stat-label">草稿</div>
+    </div>
+  </div>
+</header>
+
+<!-- Pipeline nav -->
+<div class="pipeline">
+  <div class="pipeline-step">
+    <div class="pipeline-badge active" onclick="scrollToPhase('proposal')">提案</div>
+    <div class="pipeline-arrow">→</div>
+  </div>
+  <div class="pipeline-step">
+    <div class="pipeline-badge" onclick="scrollToPhase('impl-prep')">實作準備</div>
+    <div class="pipeline-arrow">→</div>
+  </div>
+  <div class="pipeline-step">
+    <div class="pipeline-badge" onclick="scrollToPhase('impl')">實作進行</div>
+    <div class="pipeline-arrow">→</div>
+  </div>
+  <div class="pipeline-step">
+    <div class="pipeline-badge" onclick="scrollToPhase('alpha')">Alpha 測試</div>
+    <div class="pipeline-arrow">→</div>
+  </div>
+  <div class="pipeline-step">
+    <div class="pipeline-badge" onclick="scrollToPhase('beta')">Beta 驗收</div>
+    <div class="pipeline-arrow">→</div>
+  </div>
+  <div class="pipeline-step">
+    <div class="pipeline-badge" onclick="scrollToPhase('prod')">正式上線</div>
+  </div>
+</div>
+
+<main>
+
+  <!-- Flow overview -->
+  <div class="flow-section" style="padding:1.5rem; overflow-x:auto;">
+    <h2>完整流程一覽</h2>
+    <svg viewBox="0 0 780 1970" width="100%" style="min-width:420px;max-width:780px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',system-ui,sans-serif">
+    <defs>
+      <marker id="ah" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M0,0.5 L9,4 L0,7.5 Z" fill="#4a5568"/>
+      </marker>
+    </defs>
+
+    <!-- Phase bands -->
+    <rect x="0" y="0"    width="780" height="578" fill="#130f28"/>
+    <rect x="0" y="578"  width="780" height="292" fill="#0b1c1a"/>
+    <rect x="0" y="870"  width="780" height="327" fill="#1a1407"/>
+    <rect x="0" y="1197" width="780" height="288" fill="#1a0c1a"/>
+    <rect x="0" y="1485" width="780" height="297" fill="#091b11"/>
+    <rect x="0" y="1782" width="780" height="188" fill="#091422"/>
+    <line x1="0" y1="578"  x2="780" y2="578"  stroke="#2e3249" stroke-width="1"/>
+    <line x1="0" y1="870"  x2="780" y2="870"  stroke="#2e3249" stroke-width="1"/>
+    <line x1="0" y1="1197" x2="780" y2="1197" stroke="#2e3249" stroke-width="1"/>
+    <line x1="0" y1="1485" x2="780" y2="1485" stroke="#2e3249" stroke-width="1"/>
+    <line x1="0" y1="1782" x2="780" y2="1782" stroke="#2e3249" stroke-width="1"/>
+
+    <!-- Phase labels -->
+    <text x="14" y="22"   fill="#6c63ff" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 1  ·  提案階段</text>
+    <text x="14" y="600"  fill="#00c4a7" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 2  ·  實作準備階段</text>
+    <text x="14" y="892"  fill="#f59e0b" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 3  ·  實作進行（平行執行）</text>
+    <text x="14" y="1219" fill="#f472b6" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 4  ·  Alpha 內部測試</text>
+    <text x="14" y="1507" fill="#34d399" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 5  ·  Beta 客戶驗收</text>
+    <text x="14" y="1804" fill="#60a5fa" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 6  ·  正式上線</text>
+
+    <!-- ===== ARROWS ===== -->
+
+    <!-- P1 main vertical flow -->
+    <line x1="390" y1="82"  x2="390" y2="103" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="157" x2="390" y2="183" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="217" x2="390" y2="243" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="297" x2="390" y2="323" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="357" x2="390" y2="393" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="427" x2="390" y2="451" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <!-- P1 reject right branches -->
+    <line x1="445" y1="130" x2="498" y2="130" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="445" y1="270" x2="498" y2="270" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="445" y1="478" x2="498" y2="478" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <!-- P1 → P2 cross-phase dashed -->
+    <line x1="390" y1="505" x2="390" y2="600" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ah)"/>
+
+    <!-- P2 main vertical flow -->
+    <line x1="390" y1="634" x2="390" y2="668" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="702" x2="390" y2="736" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="769" x2="390" y2="803" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <!-- P2 → P3 dashed + fork stem -->
+    <line x1="390" y1="837" x2="390" y2="870" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <line x1="390" y1="870" x2="390" y2="910" stroke="#4a5568" stroke-width="1.5"/>
+
+    <!-- P3 fork: horizontal bar + stems down -->
+    <line x1="120" y1="910" x2="660" y2="910" stroke="#4a5568" stroke-width="1.5"/>
+    <line x1="120" y1="910" x2="120" y2="938" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="910" x2="390" y2="938" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="660" y1="910" x2="660" y2="938" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <!-- P3 UX lane: ux→ui→f2e -->
+    <line x1="120" y1="972" x2="120" y2="1003" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="120" y1="1037" x2="120" y2="1068" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <!-- P3 merge lines to bar at y=1150 -->
+    <line x1="120" y1="1102" x2="120" y2="1150" stroke="#4a5568" stroke-width="1.5"/>
+    <line x1="390" y1="972"  x2="390" y2="1150" stroke="#4a5568" stroke-width="1.5"/>
+    <line x1="660" y1="972"  x2="660" y2="1150" stroke="#4a5568" stroke-width="1.5"/>
+    <line x1="120" y1="1150" x2="660" y2="1150" stroke="#4a5568" stroke-width="1.5"/>
+    <line x1="390" y1="1150" x2="390" y2="1163" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <!-- P3 → P4 cross-phase -->
+    <line x1="390" y1="1197" x2="390" y2="1233" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ah)"/>
+
+    <!-- P4 alpha vertical flow -->
+    <line x1="390" y1="1267" x2="390" y2="1303" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="1337" x2="390" y2="1373" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="1407" x2="390" y2="1443" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <!-- P4 → P5 cross-phase -->
+    <line x1="390" y1="1477" x2="390" y2="1518" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ah)"/>
+
+    <!-- P5 beta vertical flow -->
+    <line x1="390" y1="1552" x2="390" y2="1588" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <line x1="390" y1="1622" x2="390" y2="1648" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <!-- d04 right → beta-fix -->
+    <line x1="445" y1="1675" x2="498" y2="1675" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+    <!-- beta-fix loop back to beta-uat -->
+    <polyline points="655,1675 720,1675 720,1605 485,1605" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,3" fill="none" marker-end="url(#ah)"/>
+    <!-- d04 → P6 cross-phase -->
+    <line x1="390" y1="1702" x2="390" y2="1782" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <line x1="390" y1="1782" x2="390" y2="1818" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+
+    <!-- P6 -->
+    <line x1="390" y1="1852" x2="390" y2="1900" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
+
+    <!-- ===== BRANCH LABELS ===== -->
+    <text x="449" y="121" fill="#fc8181" font-size="9.5">可行性低 →</text>
+    <text x="404" y="176" fill="#718096" font-size="9">No ↓</text>
+    <text x="449" y="261" fill="#fc8181" font-size="9.5">不承接 →</text>
+    <text x="404" y="314" fill="#718096" font-size="9">Yes ↓</text>
+    <text x="449" y="469" fill="#fc8181" font-size="9.5">未得標 →</text>
+    <text x="404" y="545" fill="#34d399" font-size="9">得標 ↓</text>
+    <text x="449" y="1663" fill="#fbd38d" font-size="9.5">有問題 →</text>
+    <text x="404" y="1742" fill="#34d399" font-size="9">通過 ↓</text>
+    <text x="724" y="1645" fill="#718096" font-size="9" text-anchor="middle" transform="rotate(-90,724,1645)">修正後重新驗收</text>
+
+    <!-- P3 lane labels + dividers -->
+    <line x1="265" y1="905" x2="265" y2="1195" stroke="#2e3249" stroke-width="1" stroke-dasharray="3,5"/>
+    <line x1="530" y1="905" x2="530" y2="1195" stroke="#2e3249" stroke-width="1" stroke-dasharray="3,5"/>
+    <text x="120" y="925" text-anchor="middle" fill="#a0aec0" font-size="9.5">前端設計 UX→UI→F2E</text>
+    <text x="390" y="925" text-anchor="middle" fill="#a0aec0" font-size="9.5">後端 B2E</text>
+    <text x="660" y="925" text-anchor="middle" fill="#a0aec0" font-size="9.5">基礎設施 DevOps</text>
+
+    <!-- ===== NODES ===== -->
+
+    <!-- ---- P1 PROPOSAL ---- -->
+    <rect x="297" y="48"  width="186" height="34" rx="5" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5"/>
+    <text x="390" y="60"  text-anchor="middle" fill="#7c6fc0" font-size="9">初步訪談</text>
+    <text x="390" y="75"  text-anchor="middle" fill="#c4b5fd" font-size="11">01 · /proposal-interview</text>
+
+    <polygon points="390,103 445,130 390,157 335,130" fill="#1a1d27" stroke="#4a5568" stroke-width="1.5"/>
+    <text x="390" y="134" text-anchor="middle" dy="0.35em" fill="#a0aec0" font-size="9.5">可行性評估</text>
+    <rect x="500" y="116" width="155" height="28" rx="4" fill="#1c1010" stroke="#f87171" stroke-width="1"/>
+    <text x="577" y="130" text-anchor="middle" dy="0.35em" fill="#f87171" font-size="10">❌ 放棄，流程結束</text>
+
+    <rect x="297" y="183" width="186" height="34" rx="5" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5"/>
+    <text x="390" y="195" text-anchor="middle" fill="#7c6fc0" font-size="9">內部資訊同步</text>
+    <text x="390" y="210" text-anchor="middle" fill="#c4b5fd" font-size="11">02 · /proposal-sync</text>
+
+    <polygon points="390,243 445,270 390,297 335,270" fill="#1a1d27" stroke="#4a5568" stroke-width="1.5"/>
+    <text x="390" y="274" text-anchor="middle" dy="0.35em" fill="#a0aec0" font-size="9.5">承接決策</text>
+    <rect x="500" y="256" width="155" height="28" rx="4" fill="#1c1010" stroke="#f87171" stroke-width="1"/>
+    <text x="577" y="270" text-anchor="middle" dy="0.35em" fill="#f87171" font-size="10">❌ 不承接，結束</text>
+
+    <rect x="297" y="323" width="186" height="34" rx="5" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5"/>
+    <text x="390" y="335" text-anchor="middle" fill="#7c6fc0" font-size="9">工時報價</text>
+    <text x="390" y="350" text-anchor="middle" fill="#c4b5fd" font-size="11">03 · /proposal-quote</text>
+
+    <rect x="297" y="393" width="186" height="34" rx="5" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5"/>
+    <text x="390" y="405" text-anchor="middle" fill="#7c6fc0" font-size="9">向客戶提案/比稿</text>
+    <text x="390" y="420" text-anchor="middle" fill="#c4b5fd" font-size="11">04 · /proposal-pitch</text>
+
+    <polygon points="390,451 445,478 390,505 335,478" fill="#1a1d27" stroke="#4a5568" stroke-width="1.5"/>
+    <text x="390" y="482" text-anchor="middle" dy="0.35em" fill="#a0aec0" font-size="9.5">提案結果</text>
+    <rect x="500" y="464" width="155" height="28" rx="4" fill="#1c1010" stroke="#f87171" stroke-width="1"/>
+    <text x="577" y="478" text-anchor="middle" dy="0.35em" fill="#f87171" font-size="10">📋 未得標，存檔</text>
+
+    <!-- ---- P2 IMPL PREP ---- -->
+    <rect x="297" y="600" width="186" height="34" rx="5" fill="#0d2c28" stroke="#00c4a7" stroke-width="1.5"/>
+    <text x="390" y="612" text-anchor="middle" fill="#4a9990" font-size="9">深度訪談</text>
+    <text x="390" y="627" text-anchor="middle" fill="#81e6d9" font-size="11">05 · /impl-prep-interview</text>
+
+    <rect x="297" y="668" width="186" height="34" rx="5" fill="#0d2c28" stroke="#00c4a7" stroke-width="1.5"/>
+    <text x="390" y="680" text-anchor="middle" fill="#4a9990" font-size="9">工作說明書</text>
+    <text x="390" y="695" text-anchor="middle" fill="#81e6d9" font-size="11">06 · /impl-prep-sow</text>
+
+    <rect x="297" y="736" width="186" height="34" rx="5" fill="#0d2c28" stroke="#00c4a7" stroke-width="1.5"/>
+    <text x="390" y="748" text-anchor="middle" fill="#4a9990" font-size="9">人力甘特圖</text>
+    <text x="390" y="763" text-anchor="middle" fill="#81e6d9" font-size="11">07 · /impl-prep-gantt</text>
+
+    <rect x="297" y="803" width="186" height="34" rx="5" fill="#0d2c28" stroke="#00c4a7" stroke-width="1.5"/>
+    <text x="390" y="815" text-anchor="middle" fill="#4a9990" font-size="9">Kickoff 會議</text>
+    <text x="390" y="830" text-anchor="middle" fill="#81e6d9" font-size="11">08 · /impl-prep-kickoff</text>
+
+    <!-- ---- P3 IMPL (3 parallel lanes) ---- -->
+    <!-- Col1: UX/UI/F2E -->
+    <rect x="40"  y="938" width="160" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="120" y="950" text-anchor="middle" fill="#9a7030" font-size="9">UX Mockup ✓</text>
+    <text x="120" y="965" text-anchor="middle" fill="#fbd38d" font-size="11">09 · /impl-ux</text>
+
+    <rect x="40"  y="1003" width="160" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="120" y="1015" text-anchor="middle" fill="#9a7030" font-size="9">UI Design 🚧</text>
+    <text x="120" y="1030" text-anchor="middle" fill="#fbd38d" font-size="11">10 · /impl-ui</text>
+
+    <rect x="40"  y="1068" width="160" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="120" y="1080" text-anchor="middle" fill="#9a7030" font-size="9">前端實作 🚧</text>
+    <text x="120" y="1095" text-anchor="middle" fill="#fbd38d" font-size="11">13 · /impl-f2e</text>
+
+    <!-- Col2: B2E -->
+    <rect x="310" y="938" width="160" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="390" y="950" text-anchor="middle" fill="#9a7030" font-size="9">後端實作 🚧</text>
+    <text x="390" y="965" text-anchor="middle" fill="#fbd38d" font-size="11">11 · /impl-b2e</text>
+
+    <!-- Col3: DevOps -->
+    <rect x="580" y="938" width="160" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="660" y="950" text-anchor="middle" fill="#9a7030" font-size="9">基礎設施 🚧</text>
+    <text x="660" y="965" text-anchor="middle" fill="#fbd38d" font-size="11">12 · /impl-devops</text>
+
+    <!-- Merge: integration -->
+    <rect x="297" y="1163" width="186" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="390" y="1175" text-anchor="middle" fill="#9a7030" font-size="9">整合串接 🚧</text>
+    <text x="390" y="1190" text-anchor="middle" fill="#fbd38d" font-size="11">14 · /impl-integration</text>
+
+    <!-- ---- P4 ALPHA ---- -->
+    <rect x="297" y="1233" width="186" height="34" rx="5" fill="#2c0f25" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="390" y="1245" text-anchor="middle" fill="#914080" font-size="9">部署 SIT 🚧</text>
+    <text x="390" y="1260" text-anchor="middle" fill="#fbcfe8" font-size="11">15 · /alpha-deploy</text>
+
+    <rect x="297" y="1303" width="186" height="34" rx="5" fill="#2c0f25" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="390" y="1315" text-anchor="middle" fill="#914080" font-size="9">測試報告 🚧</text>
+    <text x="390" y="1330" text-anchor="middle" fill="#fbcfe8" font-size="11">16 · /alpha-report</text>
+
+    <rect x="297" y="1373" width="186" height="34" rx="5" fill="#2c0f25" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="390" y="1385" text-anchor="middle" fill="#914080" font-size="9">整合測試 🚧</text>
+    <text x="390" y="1400" text-anchor="middle" fill="#fbcfe8" font-size="11">17 · /alpha-test</text>
+
+    <rect x="297" y="1443" width="186" height="34" rx="5" fill="#2c0f25" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="390" y="1455" text-anchor="middle" fill="#914080" font-size="9">修正迭代 🚧</text>
+    <text x="390" y="1470" text-anchor="middle" fill="#fbcfe8" font-size="11">18 · /alpha-fix</text>
+
+    <!-- ---- P5 BETA ---- -->
+    <rect x="297" y="1518" width="186" height="34" rx="5" fill="#0a2d1a" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="390" y="1530" text-anchor="middle" fill="#2a7050" font-size="9">部署 UAT 🚧</text>
+    <text x="390" y="1545" text-anchor="middle" fill="#9ae6b4" font-size="11">19 · /beta-deploy</text>
+
+    <rect x="297" y="1588" width="186" height="34" rx="5" fill="#0a2d1a" stroke="#34d399" stroke-width="1.5"/>
+    <text x="390" y="1600" text-anchor="middle" fill="#2a7050" font-size="9">客戶驗收 ✓</text>
+    <text x="390" y="1615" text-anchor="middle" fill="#9ae6b4" font-size="11">20 · /beta-uat</text>
+
+    <polygon points="390,1648 445,1675 390,1702 335,1675" fill="#1a1d27" stroke="#4a5568" stroke-width="1.5"/>
+    <text x="390" y="1679" text-anchor="middle" dy="0.35em" fill="#a0aec0" font-size="9.5">驗收結果</text>
+
+    <rect x="500" y="1661" width="155" height="28" rx="4" fill="#0a2d1a" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <text x="577" y="1670" text-anchor="middle" fill="#6a9080" font-size="9">修正後重新驗收 🚧</text>
+    <text x="577" y="1682" text-anchor="middle" fill="#9ae6b4" font-size="10">21 · /beta-fix</text>
+
+    <!-- ---- P6 PROD ---- -->
+    <rect x="297" y="1818" width="186" height="34" rx="5" fill="#0a1f35" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="390" y="1830" text-anchor="middle" fill="#2a5070" font-size="9">正式部署 🚧</text>
+    <text x="390" y="1845" text-anchor="middle" fill="#90cdf4" font-size="11">22 · /prod-deploy</text>
+
+    <rect x="330" y="1900" width="120" height="34" rx="17" fill="#132040" stroke="#60a5fa" stroke-width="2"/>
+    <text x="390" y="1917" text-anchor="middle" fill="#90cdf4" font-size="13" font-weight="700">🏁 專案結案</text>
+
+    <!-- ===== LEGEND ===== -->
+    <rect x="14" y="1945" width="470" height="22" rx="4" fill="#1a1d27" stroke="#2e3249" stroke-width="1"/>
+    <rect x="24" y="1951" width="22" height="10" rx="2" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5"/>
+    <text x="52" y="1960" fill="#a0aec0" font-size="9">✓ 完整 SKILL</text>
+    <rect x="115" y="1951" width="22" height="10" rx="2" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <text x="143" y="1960" fill="#a0aec0" font-size="9">🚧 草稿</text>
+    <rect x="195" y="1951" width="18" height="10" rx="2" fill="#1c1010" stroke="#f87171" stroke-width="1"/>
+    <text x="219" y="1960" fill="#a0aec0" font-size="9">流程終止</text>
+    <polygon points="283,1951 292,1956 283,1961 274,1956" fill="#1a1d27" stroke="#4a5568" stroke-width="1.2"/>
+    <text x="298" y="1960" fill="#a0aec0" font-size="9">決策點</text>
+    <line x1="348" y1="1956" x2="370" y2="1956" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="376" y="1960" fill="#a0aec0" font-size="9">階段轉換</text>
+    <line x1="435" y1="1956" x2="457" y2="1956" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="463" y="1960" fill="#718096" font-size="9">修正回圈</text>
+
+    </svg>
+  </div>
+
+  <!-- Meta SKILL -->
+  <div class="phase" id="meta">
+    <div class="phase-header">
+      <div class="phase-dot" style="background:#a78bfa"></div>
+      <div class="phase-title">元 SKILL</div>
+      <div class="phase-count">1 個</div>
+      <div class="phase-line"></div>
+    </div>
+    <div class="cards">
+      <div class="card optimizer" style="--phase-color:#a78bfa">
+        <div class="optimizer-icon">⚙️</div>
+        <div class="optimizer-body">
+          <div class="card-top">
+            <div class="card-num">00</div>
+            <div class="card-status status-done">✓ 完整</div>
+          </div>
+          <div class="card-name">/skill-optimizer</div>
+          <div class="card-desc">元 SKILL — 分析並優化所有專案流程 SKILL。可針對單一 SKILL 或全部進行審查、補強問題清單、根據實際執行經驗迭代改善。支援：執行問題回饋、完善草稿、定期審查、批次優化等模式。</div>
+          <div class="card-tags">
+            <span class="tag">單一 SKILL</span>
+            <span class="tag">全部批次</span>
+            <span class="tag">草稿完善</span>
+            <span class="tag">CHANGELOG</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 1: Proposal -->
+  <div class="phase" id="proposal">
+    <div class="phase-header">
+      <div class="phase-dot" style="background:#6c63ff"></div>
+      <div class="phase-title">提案階段</div>
+      <div class="phase-count">4 個 · 全部完整</div>
+      <div class="phase-line"></div>
+    </div>
+    <div class="cards">
+
+      <div class="card" style="--phase-color:#6c63ff">
+        <div class="card-top">
+          <div class="card-num">01</div>
+          <div class="card-status status-done">✓ 完整</div>
+        </div>
+        <div class="card-name">/proposal-interview</div>
+        <div class="card-desc">初步訪談。收集客戶基本資訊、需求概述、預算與時程，產出訪談紀錄文件並建立 GitLab issue 與 Slack 通知。支援快速路徑（客戶提供 Brief 文件）。</div>
+        <div class="card-tags">
+          <span class="tag">訪談紀錄 md</span>
+          <span class="tag">GitLab Issue</span>
+          <span class="tag">Slack 通知</span>
+          <span class="tag">可行性評估</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/proposal-sync</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#6c63ff">
+        <div class="card-top">
+          <div class="card-num">02</div>
+          <div class="card-status status-done">✓ 完整</div>
+        </div>
+        <div class="card-name">/proposal-sync</div>
+        <div class="card-desc">團隊內部資訊同步。彙整訪談結果，召集關鍵成員評估可行性，產出技術/設計/商業三維評估文件，確認承接決策。</div>
+        <div class="card-tags">
+          <span class="tag">內部評估文件</span>
+          <span class="tag">技術/設計/商業</span>
+          <span class="tag">Timeout 機制</span>
+          <span class="tag">承接決策</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/proposal-quote</span> 或深度訪談</div>
+      </div>
+
+      <div class="card" style="--phase-color:#6c63ff">
+        <div class="card-top">
+          <div class="card-num">03</div>
+          <div class="card-status status-done">✓ 完整</div>
+        </div>
+        <div class="card-name">/proposal-quote</div>
+        <div class="card-desc">人力工時報價。依功能複雜度估算各角色工時（PM/UX/UI/F2E/B2E/DevOps），套用報價策略（正常/保守/競標），產出客戶版與內部版報價文件。</div>
+        <div class="card-tags">
+          <span class="tag">工時估算表</span>
+          <span class="tag">報價文件</span>
+          <span class="tag">內部版含毛利</span>
+          <span class="tag">付款條件</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/proposal-pitch</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#6c63ff">
+        <div class="card-top">
+          <div class="card-num">04</div>
+          <div class="card-status status-done">✓ 完整</div>
+        </div>
+        <div class="card-name">/proposal-pitch</div>
+        <div class="card-desc">向客戶提案/比稿。規劃競爭態勢與溝通策略，準備提案素材 Checklist，產出提案大綱與功能架構文件 v1，追蹤提案結果並產出覆盤文件。</div>
+        <div class="card-tags">
+          <span class="tag">提案策略規劃</span>
+          <span class="tag">功能架構文件 v1</span>
+          <span class="tag">Sitemap / PPT</span>
+          <span class="tag">提案覆盤</span>
+        </div>
+        <div class="card-next">→ 得標後：<span class="next-cmd">/impl-prep-interview</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 2: Implementation Prep -->
+  <div class="phase" id="impl-prep">
+    <div class="phase-header">
+      <div class="phase-dot" style="background:#00c4a7"></div>
+      <div class="phase-title">實作準備階段</div>
+      <div class="phase-count">4 個 · 全部完整</div>
+      <div class="phase-line"></div>
+    </div>
+    <div class="cards">
+
+      <div class="card" style="--phase-color:#00c4a7">
+        <div class="card-top">
+          <div class="card-num">05</div>
+          <div class="card-status status-done">✓ 完整</div>
+        </div>
+        <div class="card-name">/impl-prep-interview</div>
+        <div class="card-desc">深度訪談。得標後多輪需求挖掘，產出角色矩陣、關係流程圖、會議紀錄、客戶交付物追蹤表、API 整合準備矩陣與需求確認文件。支援群訪規劃。</div>
+        <div class="card-tags">
+          <span class="tag">角色矩陣</span>
+          <span class="tag">需求確認文件</span>
+          <span class="tag">API 整合矩陣</span>
+          <span class="tag">Out of Scope</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/impl-prep-sow</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#00c4a7">
+        <div class="card-top">
+          <div class="card-num">06</div>
+          <div class="card-status status-done">✓ 完整</div>
+        </div>
+        <div class="card-name">/impl-prep-sow</div>
+        <div class="card-desc">製作 SOW 工作說明書（13條結構）。含功能範圍、非功能需求、驗收條件、付款里程碑、Change Control 工時池、保固期、SLA。支援企業客戶多輪協商流程。</div>
+        <div class="card-tags">
+          <span class="tag">SOW 13 條</span>
+          <span class="tag">工時池 CR 機制</span>
+          <span class="tag">版本歷史</span>
+          <span class="tag">企業協商</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/impl-prep-gantt</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#00c4a7">
+        <div class="card-top">
+          <div class="card-num">07</div>
+          <div class="card-status status-done">✓ 完整</div>
+        </div>
+        <div class="card-name">/impl-prep-gantt</div>
+        <div class="card-desc">產生人力甘特圖。使用 MS Project 或 Excel，排入各角色進場順序、里程碑節點，預留客戶審核等待時間。範疇變更時更新版本號。</div>
+        <div class="card-tags">
+          <span class="tag">MS Project / Excel</span>
+          <span class="tag">週為粒度</span>
+          <span class="tag">里程碑</span>
+          <span class="tag">版本管理</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/impl-prep-kickoff</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#00c4a7">
+        <div class="card-top">
+          <div class="card-num">08</div>
+          <div class="card-status status-done">✓ 完整</div>
+        </div>
+        <div class="card-name">/impl-prep-kickoff</div>
+        <div class="card-desc">Kickoff 會議（主要為內部）。確認溝通機制、站會節奏、工具（LINE/Email/Azure DevOps），建立共用進度追蹤表，產出會議紀錄與 Action Items。</div>
+        <div class="card-tags">
+          <span class="tag">Kickoff 議程</span>
+          <span class="tag">共用追蹤表</span>
+          <span class="tag">溝通規範</span>
+          <span class="tag">資安問卷</span>
+        </div>
+        <div class="card-next">→ 平行執行：<span class="next-cmd">/impl-ux</span> · <span class="next-cmd">/impl-b2e</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 3: Implementation -->
+  <div class="phase" id="impl">
+    <div class="phase-header">
+      <div class="phase-dot" style="background:#f59e0b"></div>
+      <div class="phase-title">實作進行階段</div>
+      <div class="phase-count">6 個 · 1 完整 · 5 草稿</div>
+      <div class="phase-line"></div>
+    </div>
+    <div class="cards">
+
+      <div class="card" style="--phase-color:#f59e0b">
+        <div class="card-top">
+          <div class="card-num">09</div>
+          <div class="card-status status-done">✓ 完整</div>
+        </div>
+        <div class="card-name">/impl-ux</div>
+        <div class="card-desc">UX Mockup 設計。Figma 工具，User Flow → Wireframe → Mockup，含內部 review、客戶過稿（逐流程編號確認）、修改迭代與定稿移交。支援群訪（使用者研究）流程。</div>
+        <div class="card-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">User Flow</span>
+          <span class="tag">客戶過稿</span>
+          <span class="tag">群訪規劃</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/impl-ui</span>（串行）</div>
+      </div>
+
+      <div class="card" style="--phase-color:#f59e0b">
+        <div class="card-top">
+          <div class="card-num">10</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/impl-ui</div>
+        <div class="card-desc">UI Design 視覺設計。依 UX Mockup 產出設計稿，含 Design System/元件規範，交付 F2E 切版。多場過稿會議（逐功能流程討論），圖庫授權確認。</div>
+        <div class="card-tags">
+          <span class="tag">Design System</span>
+          <span class="tag">多場過稿</span>
+          <span class="tag">圖庫授權</span>
+          <span class="tag">PDF 交付</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/impl-f2e</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#f59e0b">
+        <div class="card-top">
+          <div class="card-num">11</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/impl-b2e</div>
+        <div class="card-desc">後端實作。DB Schema 設計、API 規格定義（交 F2E 參考），實作與單元測試、Code review，部署至 SIT 前確認。與 UX 平行可進行。</div>
+        <div class="card-tags">
+          <span class="tag">DB Schema</span>
+          <span class="tag">API 設計</span>
+          <span class="tag">Swagger</span>
+          <span class="tag">Code Review</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/impl-integration</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#f59e0b">
+        <div class="card-top">
+          <div class="card-num">12</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/impl-devops</div>
+        <div class="card-desc">DevOps Infra 工程。規劃雲端/地端架構，建置 SIT/UAT/PROD 環境、CI/CD pipeline、SSL/防火牆安全設定，交付運維文件 runbook。</div>
+        <div class="card-tags">
+          <span class="tag">Infra 架構</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">環境分離</span>
+          <span class="tag">資安設定</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/alpha-deploy</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#f59e0b">
+        <div class="card-top">
+          <div class="card-num">13</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/impl-f2e</div>
+        <div class="card-desc">前端實作。依 UI 設計稿（流程 PDF）切版，API 串接，分批打包交付（source code + 程式清單 PPT + 文件 docx），版控追蹤 git hash ↔ 客戶 build ID。</div>
+        <div class="card-tags">
+          <span class="tag">分批打包</span>
+          <span class="tag">版控雙軌</span>
+          <span class="tag">DemoSite 驗收</span>
+          <span class="tag">加密交付</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/impl-integration</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#f59e0b">
+        <div class="card-top">
+          <div class="card-num">14</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/impl-integration</div>
+        <div class="card-desc">整合串接迭代。前後端串接、第三方系統整合，依 Sprint 節奏迭代，管理 Bug 優先級（P0/P1/P2），確認 Alpha 進場條件後觸發部署。</div>
+        <div class="card-tags">
+          <span class="tag">第三方整合</span>
+          <span class="tag">Sprint 迭代</span>
+          <span class="tag">Bug 追蹤</span>
+          <span class="tag">Alpha 進場條件</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/alpha-deploy</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 4: Alpha -->
+  <div class="phase" id="alpha">
+    <div class="phase-header">
+      <div class="phase-dot" style="background:#f472b6"></div>
+      <div class="phase-title">Alpha 內部測試階段</div>
+      <div class="phase-count">4 個 · 全部草稿</div>
+      <div class="phase-line"></div>
+    </div>
+    <div class="cards">
+
+      <div class="card" style="--phase-color:#f472b6">
+        <div class="card-top">
+          <div class="card-num">15</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/alpha-deploy</div>
+        <div class="card-desc">部署至 SIT 環境。執行正式 SIT 部署（手動或 CI/CD 自動化），部署前 checklist 確認，Smoke test 驗證，通知測試人員開放測試。</div>
+        <div class="card-tags">
+          <span class="tag">SIT 環境</span>
+          <span class="tag">Smoke Test</span>
+          <span class="tag">Rollback 流程</span>
+          <span class="tag">Health Check</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/alpha-report</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#f472b6">
+        <div class="card-top">
+          <div class="card-num">16</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/alpha-report</div>
+        <div class="card-desc">產生測試/驗收報告。從 SOW 功能清單自動提取測試項目，產出測試案例（Happy Path + Edge Case），建立驗收報告模板，分配測試人員。</div>
+        <div class="card-tags">
+          <span class="tag">AI 輔助產出</span>
+          <span class="tag">測試案例</span>
+          <span class="tag">SOW 可追溯</span>
+          <span class="tag">驗收模板</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/alpha-test</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#f472b6">
+        <div class="card-top">
+          <div class="card-num">17</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/alpha-test</div>
+        <div class="card-desc">整合測試執行。PM/Sales/Account 搭配 AI 輔助按測試案例執行，記錄並分類問題（P0/P1/P2 嚴重度），更新測試報告，移交開發修正。</div>
+        <div class="card-tags">
+          <span class="tag">PM/Sales 執行</span>
+          <span class="tag">AI 輔助</span>
+          <span class="tag">問題分類</span>
+          <span class="tag">GitLab Issues</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/alpha-fix</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#f472b6">
+        <div class="card-top">
+          <div class="card-num">18</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/alpha-fix</div>
+        <div class="card-desc">修正功能與 Bug。依優先級排序修正任務，修正後重新驗證（Regression 範圍），更新測試報告，P0/P1 清零後判斷進入 Beta 條件。</div>
+        <div class="card-tags">
+          <span class="tag">優先級排序</span>
+          <span class="tag">Regression Test</span>
+          <span class="tag">Beta 進場條件</span>
+          <span class="tag">進度同步</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/beta-deploy</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 5: Beta -->
+  <div class="phase" id="beta">
+    <div class="phase-header">
+      <div class="phase-dot" style="background:#34d399"></div>
+      <div class="phase-title">Beta 客戶驗收階段</div>
+      <div class="phase-count">3 個 · 1 完整 · 2 草稿</div>
+      <div class="phase-line"></div>
+    </div>
+    <div class="cards">
+
+      <div class="card" style="--phase-color:#34d399">
+        <div class="card-top">
+          <div class="card-num">19</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/beta-deploy</div>
+        <div class="card-desc">部署至 UAT 環境。確認 UAT 環境規格（VM/第三方正式環境/真實資料），執行部署，Smoke test，提供客戶存取資訊，確認驗收時程。</div>
+        <div class="card-tags">
+          <span class="tag">UAT 環境</span>
+          <span class="tag">客戶存取</span>
+          <span class="tag">Config 差異</span>
+          <span class="tag">客戶 IT 協調</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/beta-uat</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#34d399">
+        <div class="card-top">
+          <div class="card-num">20</div>
+          <div class="card-status status-done">✓ 完整</div>
+        </div>
+        <div class="card-name">/beta-uat</div>
+        <div class="card-desc">客戶驗收執行。先完成 SF 內部 SIT（含弱點掃描），再移交客戶。產出測試清單 Google Sheets 與 Customer Acceptance Form，區分驗收問題與 CR，取得雙方簽核。</div>
+        <div class="card-tags">
+          <span class="tag">SIT 驗收文件</span>
+          <span class="tag">弱點掃描</span>
+          <span class="tag">Acceptance Form</span>
+          <span class="tag">Bug 雙軌追蹤</span>
+        </div>
+        <div class="card-next">→ 修正：<span class="next-cmd">/beta-fix</span> · CR：<span class="next-cmd">/proposal-quote</span> · 通過：<span class="next-cmd">/prod-deploy</span></div>
+      </div>
+
+      <div class="card" style="--phase-color:#34d399">
+        <div class="card-top">
+          <div class="card-num">21</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/beta-fix</div>
+        <div class="card-desc">修正客戶反饋。處理驗收問題，修正後回 SIT 驗證再更新至 UAT，迭代至驗收通過。視需要執行弱點掃描與壓力測試，記錄已知問題清單。</div>
+        <div class="card-tags">
+          <span class="tag">雙環境驗證</span>
+          <span class="tag">弱點掃描</span>
+          <span class="tag">壓力測試</span>
+          <span class="tag">已知問題清單</span>
+        </div>
+        <div class="card-next">→ 下一步：<span class="next-cmd">/prod-deploy</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 6: Production -->
+  <div class="phase" id="prod">
+    <div class="phase-header">
+      <div class="phase-dot" style="background:#60a5fa"></div>
+      <div class="phase-title">正式上線 Production 階段</div>
+      <div class="phase-count">1 個 · 草稿</div>
+      <div class="phase-line"></div>
+    </div>
+    <div class="cards">
+
+      <div class="card" style="--phase-color:#60a5fa">
+        <div class="card-top">
+          <div class="card-num">22</div>
+          <div class="card-status status-draft">🚧 草稿</div>
+        </div>
+        <div class="card-name">/prod-deploy</div>
+        <div class="card-desc">部署至 PROD 環境。非尖峰時段執行，確認 DNS/憑證/防火牆（協同客戶 IT），正式服務串接驗證，上線驗收簽核，維護移交文件，進入保固期。</div>
+        <div class="card-tags">
+          <span class="tag">PROD 部署</span>
+          <span class="tag">正式服務串接</span>
+          <span class="tag">Rollback 計畫</span>
+          <span class="tag">維護移交</span>
+        </div>
+        <div class="card-next">→ 結案，進入維護期</div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer style="text-align:center; padding:2rem; color:var(--text-muted); font-size:0.8rem; border-top:1px solid var(--border);">
+  SugarFun · 專案流程 SKILL 總覽 · 最後更新 2026-04-14
+</footer>
+
+<script>
+  function scrollToPhase(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // update active badge
+    document.querySelectorAll('.pipeline-badge').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // highlight pipeline badge on scroll
+  const phases = ['proposal','impl-prep','impl','alpha','beta','prod'];
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = phases.indexOf(entry.target.id);
+        if (idx >= 0) {
+          document.querySelectorAll('.pipeline-badge').forEach((b, i) => {
+            b.classList.toggle('active', i === idx);
+          });
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  phases.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
