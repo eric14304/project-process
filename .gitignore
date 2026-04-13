@@ -1,2 +1,3 @@
 reference
-gitlab.token
+.claude/
+*.token
