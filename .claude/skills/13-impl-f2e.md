@@ -15,9 +15,14 @@ description: 實作進行階段 - F2E 前端實作。根據 UX/UI 設計稿與 B
 - 元件庫（Ant Design / Material UI / 自製）？
 
 ### 關於與 UI 協作
-- F2E 拿到 Figma 後，直接實作還是需要 UI 說明？
 - RWD 斷點規範由 UI 定義還是 F2E 自行判斷？
 - 動畫/互動效果的規格如何傳達？
+
+**已知**：UI 交付格式為流程編號 PDF（非 Figma）
+- 每個使用者流程獨立一份 PDF（例：`1.0寵物資訊流程.pdf`、`2.0點數兌換優惠券流程.pdf`）
+- 編號對應 wireframe/UI 過稿時使用的流程號（0.0, 1.0, 2.0...）
+- 特殊功能有獨立 PDF（例：`000商品序號登錄流程.pdf`、`店家後台.pdf`）
+- Final 資料夾 = 客戶確認後的最終交付版本，F2E 以此為準
 
 ### 關於與 B2E 協作
 - API 尚未完成時，F2E 如何 mock 資料（MSW / json-server）？

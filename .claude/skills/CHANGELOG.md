@@ -4,6 +4,30 @@
 
 ---
 
+## 2026-04-14（七次更新）
+
+- **補充草稿答案**：`20-beta-uat.md`
+  - 從 🚧 草稿升級為可執行 SKILL
+  - 補入驗收單格式（Customer Acceptance Form）：含 Header、Items/報價單號對照、Google Sheets 測試清單連結、雙方簽署欄
+  - 確認：每個重大模組/里程碑獨立一份驗收單（百靈佳案共 4 份）
+  - 確認：客戶自行測試 ~2 週，SF 支援但不代測
+  - 確認：反饋分類為「驗收問題（beta-fix）」vs「新需求（CR，開追加報價）」
+  - 觸發來源：reference/百靈佳/Final Report/ 含 4 份不同模組的驗收單，結構清晰
+
+- **補充草稿答案**：`07-impl-prep-gantt.md`
+  - 確認工具：MS Project (.mpp) 為主要工具，Excel/Sheets 為替代方案
+  - 確認粒度：週為單位
+  - 確認版本更新時機：重大範疇變更（百靈佳案 V1~V5，AorB 加入後更名 V4/V5(含A+B)）
+  - 新增命名規範
+  - 觸發來源：reference/百靈佳/Schedule/ 含 5 個版本 .mpp 時程表
+
+- **補充草稿答案**：`13-impl-f2e.md`
+  - 確認 UI 交付格式：流程編號 PDF（1.0, 2.0, 3.0...），非 Figma
+  - Final 資料夾 = 客戶確認後最終版，F2E 以此為準
+  - 觸發來源：reference/百靈佳/Creative/UI過稿/Final/ 及 F2E/ 資料夾結構
+
+---
+
 ## 2026-04-14（六次更新）
 
 - **補充草稿答案**：`08-impl-prep-kickoff.md`
