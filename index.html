@@ -399,249 +399,10 @@
   <!-- Flow overview -->
   <div class="flow-section" style="padding:1.5rem; overflow-x:auto;">
     <h2>完整流程一覽</h2>
-    <svg viewBox="0 0 780 1970" width="100%" style="min-width:420px;max-width:780px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',system-ui,sans-serif">
-    <defs>
-      <marker id="ah" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="5" markerHeight="5" orient="auto">
-        <path d="M0,0.5 L9,4 L0,7.5 Z" fill="#4a5568"/>
-      </marker>
-    </defs>
-
-    <!-- Phase bands -->
-    <rect x="0" y="0"    width="780" height="578" fill="#130f28"/>
-    <rect x="0" y="578"  width="780" height="292" fill="#0b1c1a"/>
-    <rect x="0" y="870"  width="780" height="327" fill="#1a1407"/>
-    <rect x="0" y="1197" width="780" height="288" fill="#1a0c1a"/>
-    <rect x="0" y="1485" width="780" height="297" fill="#091b11"/>
-    <rect x="0" y="1782" width="780" height="188" fill="#091422"/>
-    <line x1="0" y1="578"  x2="780" y2="578"  stroke="#2e3249" stroke-width="1"/>
-    <line x1="0" y1="870"  x2="780" y2="870"  stroke="#2e3249" stroke-width="1"/>
-    <line x1="0" y1="1197" x2="780" y2="1197" stroke="#2e3249" stroke-width="1"/>
-    <line x1="0" y1="1485" x2="780" y2="1485" stroke="#2e3249" stroke-width="1"/>
-    <line x1="0" y1="1782" x2="780" y2="1782" stroke="#2e3249" stroke-width="1"/>
-
-    <!-- Phase labels -->
-    <text x="14" y="22"   fill="#6c63ff" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 1  ·  提案階段</text>
-    <text x="14" y="600"  fill="#00c4a7" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 2  ·  實作準備階段</text>
-    <text x="14" y="892"  fill="#f59e0b" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 3  ·  實作進行（平行執行）</text>
-    <text x="14" y="1219" fill="#f472b6" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 4  ·  SIT 內部測試</text>
-    <text x="14" y="1507" fill="#34d399" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 5  ·  UAT 客戶驗收</text>
-    <text x="14" y="1804" fill="#60a5fa" font-size="11" font-weight="700" letter-spacing=".07em">PHASE 6  ·  正式上線</text>
-
-    <!-- ===== ARROWS ===== -->
-
-    <!-- P1 main vertical flow -->
-    <line x1="390" y1="82"  x2="390" y2="243" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="390" y1="297" x2="390" y2="323" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="390" y1="357" x2="390" y2="393" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="390" y1="427" x2="390" y2="451" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <!-- P1 reject right branches -->
-    <line x1="445" y1="270" x2="498" y2="270" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="445" y1="478" x2="498" y2="478" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <!-- P1 → P2 cross-phase dashed -->
-    <line x1="390" y1="505" x2="390" y2="600" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ah)"/>
-
-    <!-- P2 main vertical flow -->
-    <line x1="390" y1="634" x2="390" y2="668" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="390" y1="702" x2="390" y2="736" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="390" y1="769" x2="390" y2="803" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <!-- P2 → P3 dashed + fork stem -->
-    <line x1="390" y1="837" x2="390" y2="870" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,4"/>
-    <line x1="390" y1="870" x2="390" y2="910" stroke="#4a5568" stroke-width="1.5"/>
-
-    <!-- P3 fork: horizontal bar + stems down -->
-    <line x1="120" y1="910" x2="660" y2="910" stroke="#4a5568" stroke-width="1.5"/>
-    <line x1="120" y1="910" x2="120" y2="938" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="390" y1="910" x2="390" y2="938" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="660" y1="910" x2="660" y2="938" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <!-- P3 UX lane: ux→ui→f2e -->
-    <line x1="120" y1="972" x2="120" y2="1003" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="120" y1="1037" x2="120" y2="1068" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <!-- P3 merge lines to bar at y=1150 -->
-    <line x1="120" y1="1102" x2="120" y2="1150" stroke="#4a5568" stroke-width="1.5"/>
-    <line x1="390" y1="972"  x2="390" y2="1150" stroke="#4a5568" stroke-width="1.5"/>
-    <line x1="660" y1="972"  x2="660" y2="1150" stroke="#4a5568" stroke-width="1.5"/>
-    <line x1="120" y1="1150" x2="660" y2="1150" stroke="#4a5568" stroke-width="1.5"/>
-    <line x1="390" y1="1150" x2="390" y2="1163" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <!-- P3 → P4 cross-phase -->
-    <line x1="390" y1="1197" x2="390" y2="1303" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ah)"/>
-
-    <!-- P4 SIT vertical flow -->
-    <line x1="390" y1="1337" x2="390" y2="1373" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="390" y1="1407" x2="390" y2="1421" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <!-- d_alpha right → alpha-fix -->
-    <line x1="445" y1="1448" x2="498" y2="1448" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <!-- sit-fix loop back to sit-test -->
-    <polyline points="660,1448 720,1448 720,1390 485,1390" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,3" fill="none" marker-end="url(#ah)"/>
-    <!-- d_alpha → P5 cross-phase -->
-    <line x1="390" y1="1475" x2="390" y2="1518" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ah)"/>
-
-    <!-- P5 UAT vertical flow -->
-    <line x1="390" y1="1552" x2="390" y2="1588" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <line x1="390" y1="1622" x2="390" y2="1648" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <!-- d04 right → uat-fix -->
-    <line x1="445" y1="1675" x2="498" y2="1675" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-    <!-- beta-fix loop back to beta-uat -->
-    <polyline points="655,1675 720,1675 720,1605 485,1605" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,3" fill="none" marker-end="url(#ah)"/>
-    <!-- d04 → P6 cross-phase -->
-    <line x1="390" y1="1702" x2="390" y2="1782" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,4"/>
-    <line x1="390" y1="1782" x2="390" y2="1818" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-
-    <!-- P6 -->
-    <line x1="390" y1="1852" x2="390" y2="1900" stroke="#4a5568" stroke-width="1.5" marker-end="url(#ah)"/>
-
-    <!-- ===== BRANCH LABELS ===== -->
-    <text x="449" y="261" fill="#fc8181" font-size="9.5">不承接 →</text>
-    <text x="404" y="314" fill="#718096" font-size="9">承接 ↓</text>
-    <text x="449" y="469" fill="#fc8181" font-size="9.5">未得標 →</text>
-    <text x="404" y="545" fill="#34d399" font-size="9">得標 ↓</text>
-    <text x="449" y="1436" fill="#fbd38d" font-size="9.5">有問題 →</text>
-    <text x="404" y="1492" fill="#34d399" font-size="9">通過 ↓</text>
-    <text x="724" y="1415" fill="#718096" font-size="9" text-anchor="middle" transform="rotate(-90,724,1415)">修正後重新測試</text>
-    <text x="449" y="1663" fill="#fbd38d" font-size="9.5">有問題 →</text>
-    <text x="404" y="1742" fill="#34d399" font-size="9">通過 ↓</text>
-    <text x="724" y="1645" fill="#718096" font-size="9" text-anchor="middle" transform="rotate(-90,724,1645)">修正後重新驗收</text>
-
-    <!-- P3 lane labels + dividers -->
-    <line x1="265" y1="905" x2="265" y2="1195" stroke="#2e3249" stroke-width="1" stroke-dasharray="3,5"/>
-    <line x1="530" y1="905" x2="530" y2="1195" stroke="#2e3249" stroke-width="1" stroke-dasharray="3,5"/>
-    <text x="120" y="925" text-anchor="middle" fill="#a0aec0" font-size="9.5">前端設計 UX→UI→F2E</text>
-    <text x="390" y="925" text-anchor="middle" fill="#a0aec0" font-size="9.5">後端 B2E</text>
-    <text x="660" y="925" text-anchor="middle" fill="#a0aec0" font-size="9.5">基礎設施 DevOps</text>
-
-    <!-- ===== NODES ===== -->
-
-    <!-- ---- P1 PROPOSAL ---- -->
-    <rect x="297" y="48"  width="186" height="34" rx="5" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5"/>
-    <text x="390" y="60"  text-anchor="middle" fill="#7c6fc0" font-size="9">初步訪談 + 內部評估</text>
-    <text x="390" y="75"  text-anchor="middle" fill="#c4b5fd" font-size="11">01 · /proposal-interview</text>
-
-
-
-    <polygon points="390,243 445,270 390,297 335,270" fill="#1a1d27" stroke="#4a5568" stroke-width="1.5"/>
-    <text x="390" y="274" text-anchor="middle" dy="0.35em" fill="#a0aec0" font-size="9.5">承接決策</text>
-    <rect x="500" y="256" width="155" height="28" rx="4" fill="#1c1010" stroke="#f87171" stroke-width="1"/>
-    <text x="577" y="270" text-anchor="middle" dy="0.35em" fill="#f87171" font-size="10">❌ 不承接，結束</text>
-
-    <rect x="297" y="323" width="186" height="34" rx="5" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5"/>
-    <text x="390" y="335" text-anchor="middle" fill="#7c6fc0" font-size="9">工時報價</text>
-    <text x="390" y="350" text-anchor="middle" fill="#c4b5fd" font-size="11">02 · /proposal-quote</text>
-
-    <rect x="297" y="393" width="186" height="34" rx="5" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5"/>
-    <text x="390" y="405" text-anchor="middle" fill="#7c6fc0" font-size="9">向客戶提案/比稿</text>
-    <text x="390" y="420" text-anchor="middle" fill="#c4b5fd" font-size="11">03 · /proposal-pitch</text>
-
-    <polygon points="390,451 445,478 390,505 335,478" fill="#1a1d27" stroke="#4a5568" stroke-width="1.5"/>
-    <text x="390" y="482" text-anchor="middle" dy="0.35em" fill="#a0aec0" font-size="9.5">提案結果</text>
-    <rect x="500" y="464" width="155" height="28" rx="4" fill="#1c1010" stroke="#f87171" stroke-width="1"/>
-    <text x="577" y="478" text-anchor="middle" dy="0.35em" fill="#f87171" font-size="10">📋 未得標，存檔</text>
-
-    <!-- ---- P2 IMPL PREP ---- -->
-    <rect x="297" y="600" width="186" height="34" rx="5" fill="#0d2c28" stroke="#00c4a7" stroke-width="1.5"/>
-    <text x="390" y="612" text-anchor="middle" fill="#4a9990" font-size="9">深度訪談</text>
-    <text x="390" y="627" text-anchor="middle" fill="#81e6d9" font-size="11">04 · /impl-prep-interview</text>
-
-    <rect x="297" y="668" width="186" height="34" rx="5" fill="#0d2c28" stroke="#00c4a7" stroke-width="1.5"/>
-    <text x="390" y="680" text-anchor="middle" fill="#4a9990" font-size="9">工作說明書</text>
-    <text x="390" y="695" text-anchor="middle" fill="#81e6d9" font-size="11">05 · /impl-prep-sow</text>
-
-    <rect x="297" y="736" width="186" height="34" rx="5" fill="#0d2c28" stroke="#00c4a7" stroke-width="1.5"/>
-    <text x="390" y="748" text-anchor="middle" fill="#4a9990" font-size="9">人力甘特圖</text>
-    <text x="390" y="763" text-anchor="middle" fill="#81e6d9" font-size="11">06 · /impl-prep-gantt</text>
-
-    <rect x="297" y="803" width="186" height="34" rx="5" fill="#0d2c28" stroke="#00c4a7" stroke-width="1.5"/>
-    <text x="390" y="815" text-anchor="middle" fill="#4a9990" font-size="9">Kickoff 會議</text>
-    <text x="390" y="830" text-anchor="middle" fill="#81e6d9" font-size="11">07 · /impl-prep-kickoff</text>
-
-    <!-- ---- P3 IMPL (3 parallel lanes) ---- -->
-    <!-- Col1: UX/UI/F2E -->
-    <rect x="40"  y="938" width="160" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="120" y="950" text-anchor="middle" fill="#9a7030" font-size="9">UX Mockup ✓</text>
-    <text x="120" y="965" text-anchor="middle" fill="#fbd38d" font-size="11">08 · /impl-ux</text>
-
-    <rect x="40"  y="1003" width="160" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="120" y="1015" text-anchor="middle" fill="#9a7030" font-size="9">UI Design 🚧</text>
-    <text x="120" y="1030" text-anchor="middle" fill="#fbd38d" font-size="11">09 · /impl-ui</text>
-
-    <rect x="40"  y="1068" width="160" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="120" y="1080" text-anchor="middle" fill="#9a7030" font-size="9">前端實作 🚧</text>
-    <text x="120" y="1095" text-anchor="middle" fill="#fbd38d" font-size="11">12 · /impl-f2e</text>
-
-    <!-- Col2: B2E -->
-    <rect x="310" y="938" width="160" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="390" y="950" text-anchor="middle" fill="#9a7030" font-size="9">後端實作 🚧</text>
-    <text x="390" y="965" text-anchor="middle" fill="#fbd38d" font-size="11">10 · /impl-b2e</text>
-
-    <!-- Col3: DevOps -->
-    <rect x="580" y="938" width="160" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="660" y="950" text-anchor="middle" fill="#9a7030" font-size="9">基礎設施 🚧</text>
-    <text x="660" y="965" text-anchor="middle" fill="#fbd38d" font-size="11">11 · /impl-devops</text>
-
-    <!-- Merge: integration -->
-    <rect x="297" y="1163" width="186" height="34" rx="5" fill="#2c1f00" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="390" y="1175" text-anchor="middle" fill="#9a7030" font-size="9">整合串接 🚧</text>
-    <text x="390" y="1190" text-anchor="middle" fill="#fbd38d" font-size="11">13 · /impl-integration</text>
-
-    <!-- ---- P4 SIT ---- -->
-
-    <rect x="297" y="1303" width="186" height="34" rx="5" fill="#2c0f25" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="390" y="1315" text-anchor="middle" fill="#914080" font-size="9">測試報告 🚧</text>
-    <text x="390" y="1330" text-anchor="middle" fill="#fbcfe8" font-size="11">14 · /sit-report</text>
-
-    <rect x="297" y="1373" width="186" height="34" rx="5" fill="#2c0f25" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="390" y="1385" text-anchor="middle" fill="#914080" font-size="9">部署 SIT + 整合測試 🚧</text>
-    <text x="390" y="1400" text-anchor="middle" fill="#fbcfe8" font-size="11">15 · /sit-test</text>
-
-    <!-- d_alpha: 有問題? decision after alpha-test -->
-    <polygon points="390,1421 445,1448 390,1475 335,1448" fill="#1a1d27" stroke="#4a5568" stroke-width="1.5"/>
-    <text x="390" y="1452" text-anchor="middle" dy="0.35em" fill="#a0aec0" font-size="9.5">有問題?</text>
-    <!-- alpha-fix (right branch) -->
-    <rect x="500" y="1434" width="160" height="28" rx="4" fill="#2c0f25" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="580" y="1444" text-anchor="middle" fill="#914080" font-size="9">修正迭代 🚧</text>
-    <text x="580" y="1457" text-anchor="middle" fill="#fbcfe8" font-size="10">16 · /sit-fix</text>
-
-    <!-- ---- P5 BETA ---- -->
-    <rect x="297" y="1518" width="186" height="34" rx="5" fill="#0a2d1a" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="390" y="1530" text-anchor="middle" fill="#2a7050" font-size="9">部署 UAT 🚧</text>
-    <text x="390" y="1545" text-anchor="middle" fill="#9ae6b4" font-size="11">17 · /uat-deploy</text>
-
-    <rect x="297" y="1588" width="186" height="34" rx="5" fill="#0a2d1a" stroke="#34d399" stroke-width="1.5"/>
-    <text x="390" y="1600" text-anchor="middle" fill="#2a7050" font-size="9">客戶驗收 ✓</text>
-    <text x="390" y="1615" text-anchor="middle" fill="#9ae6b4" font-size="11">18 · /uat-test</text>
-
-    <polygon points="390,1648 445,1675 390,1702 335,1675" fill="#1a1d27" stroke="#4a5568" stroke-width="1.5"/>
-    <text x="390" y="1679" text-anchor="middle" dy="0.35em" fill="#a0aec0" font-size="9.5">驗收結果</text>
-
-    <rect x="500" y="1661" width="155" height="28" rx="4" fill="#0a2d1a" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,2"/>
-    <text x="577" y="1670" text-anchor="middle" fill="#6a9080" font-size="9">修正後重新驗收 🚧</text>
-    <text x="577" y="1682" text-anchor="middle" fill="#9ae6b4" font-size="10">19 · /uat-fix</text>
-
-    <!-- ---- P6 PROD ---- -->
-    <rect x="297" y="1818" width="186" height="34" rx="5" fill="#0a1f35" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="390" y="1830" text-anchor="middle" fill="#2a5070" font-size="9">正式部署 🚧</text>
-    <text x="390" y="1845" text-anchor="middle" fill="#90cdf4" font-size="11">20 · /prod-deploy</text>
-
-    <rect x="330" y="1900" width="120" height="34" rx="17" fill="#132040" stroke="#60a5fa" stroke-width="2"/>
-    <text x="390" y="1917" text-anchor="middle" fill="#90cdf4" font-size="13" font-weight="700">🏁 專案結案</text>
-
-    <!-- ===== LEGEND ===== -->
-    <rect x="14" y="1945" width="470" height="22" rx="4" fill="#1a1d27" stroke="#2e3249" stroke-width="1"/>
-    <rect x="24" y="1951" width="22" height="10" rx="2" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5"/>
-    <text x="52" y="1960" fill="#a0aec0" font-size="9">✓ 完整 SKILL</text>
-    <rect x="115" y="1951" width="22" height="10" rx="2" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5" stroke-dasharray="4,2"/>
-    <text x="143" y="1960" fill="#a0aec0" font-size="9">🚧 草稿</text>
-    <rect x="195" y="1951" width="18" height="10" rx="2" fill="#1c1010" stroke="#f87171" stroke-width="1"/>
-    <text x="219" y="1960" fill="#a0aec0" font-size="9">流程終止</text>
-    <polygon points="283,1951 292,1956 283,1961 274,1956" fill="#1a1d27" stroke="#4a5568" stroke-width="1.2"/>
-    <text x="298" y="1960" fill="#a0aec0" font-size="9">決策點</text>
-    <line x1="348" y1="1956" x2="370" y2="1956" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <text x="376" y="1960" fill="#a0aec0" font-size="9">階段轉換</text>
-    <line x1="435" y1="1956" x2="457" y2="1956" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="463" y="1960" fill="#718096" font-size="9">修正回圈</text>
-
-    </svg>
+    <div id="flow-svg-container" style="min-width:420px;max-width:780px;margin:0 auto;"></div>
   </div>
 
-  <!-- Meta SKILL -->
+    <!-- Meta SKILL -->
   <div class="phase" id="meta">
     <div class="phase-header">
       <div class="phase-dot" style="background:#a78bfa"></div>
@@ -1105,5 +866,333 @@
   });
 </script>
 
+
+
+
+<script>
+(function () {
+'use strict';
+
+/* ── Constants ─────────────────────────────────────────── */
+var W=780, CX=390;
+var NW=186, NH=34;          // process node
+var LNW=160;                 // parallel-lane node width
+var DH=27, DS=55;           // diamond half-height / half-span
+var VGAP=14;                 // gap between nodes (arrow space)
+var PH_LBL=22, PH_T=10, PH_B=22; // phase label height, top/bottom padding
+var AX=500, AW=155, AH=28, ACX=577; // right-branch dead node
+var LX=720;                  // loop-back x
+
+var AC='#4a5568';  // arrow colour
+
+/* ── Phase palette ─────────────────────────────────────── */
+var PC={
+  p1:{c:'#6c63ff',bg:'#130f28',nb:'#1e1745',nt:'#c4b5fd',ns:'#7c6fc0'},
+  p2:{c:'#00c4a7',bg:'#0b1c1a',nb:'#0d2c28',nt:'#81e6d9',ns:'#4a9990'},
+  p3:{c:'#f59e0b',bg:'#1a1407',nb:'#2c1f00',nt:'#fbd38d',ns:'#9a7030'},
+  p4:{c:'#f472b6',bg:'#1a0c1a',nb:'#2c0f25',nt:'#fbcfe8',ns:'#914080'},
+  p5:{c:'#34d399',bg:'#091b11',nb:'#0a2d1a',nt:'#9ae6b4',ns:'#2a7050'},
+  p6:{c:'#60a5fa',bg:'#091422',nb:'#0a1f35',nt:'#90cdf4',ns:'#2a5070'},
+};
+
+/* ── Flow definition ────────────────────────────────────── */
+var FLOW=[
+  {id:'p1',label:'PHASE 1  ·  提案階段',nodes:[
+    {id:'n01',sub:'初步訪談 + 內部評估',cmd:'01 · /proposal-interview',done:1},
+    {id:'d01',t:'gate',label:'承接決策',
+     right:{id:'n01x',label:'❌ 不承接，結束',c:'#f87171',bg:'#1c1010'},rl:'不承接 →',dl:'承接 ↓'},
+    {id:'n02',sub:'工時報價',cmd:'02 · /proposal-quote',done:1},
+    {id:'n03',sub:'向客戶提案/比稿',cmd:'03 · /proposal-pitch',done:1},
+    {id:'d02',t:'gate',label:'提案結果',
+     right:{id:'n03x',label:'📋 未得標，存檔',c:'#fc8181',bg:'#1c1010'},rl:'未得標 →',dl:'得標 ↓'},
+  ]},
+  {id:'p2',label:'PHASE 2  ·  實作準備階段',nodes:[
+    {id:'n04',sub:'深度訪談',cmd:'04 · /impl-prep-interview',done:1},
+    {id:'n05',sub:'工作說明書',cmd:'05 · /impl-prep-sow',done:1},
+    {id:'n06',sub:'人力甘特圖',cmd:'06 · /impl-prep-gantt',done:1},
+    {id:'n07',sub:'Kickoff 會議',cmd:'07 · /impl-prep-kickoff',done:1},
+  ]},
+  {id:'p3',label:'PHASE 3  ·  實作進行（平行執行）',parallel:1,
+   lanes:[
+     {label:'前端設計 UX→UI→F2E',x:120,nodes:[
+       {id:'n08',sub:'UX Mockup ✓', cmd:'08 · /impl-ux', done:1},
+       {id:'n09',sub:'UI Design 🚧',cmd:'09 · /impl-ui', done:0},
+       {id:'n12',sub:'前端實作 🚧', cmd:'12 · /impl-f2e',done:0},
+     ]},
+     {label:'後端 B2E',x:390,nodes:[
+       {id:'n10',sub:'後端實作 🚧',cmd:'10 · /impl-b2e',done:0},
+     ]},
+     {label:'基礎設施 DevOps',x:660,nodes:[
+       {id:'n11',sub:'基礎設施 🚧',cmd:'11 · /impl-devops',done:0},
+     ]},
+   ],
+   merge:{id:'n13',sub:'整合串接 🚧',cmd:'13 · /impl-integration',done:0},
+  },
+  {id:'p4',label:'PHASE 4  ·  SIT 內部測試',nodes:[
+    {id:'n14',sub:'測試報告 🚧',cmd:'14 · /sit-report',done:0},
+    {id:'n15',sub:'部署 SIT + 整合測試 🚧',cmd:'15 · /sit-test',done:0},
+    {id:'d03',t:'gate',label:'有問題?',
+     right:{id:'n16',label:'/sit-fix  修正迭代 🚧',c:'#fbcfe8',bg:'#2c0f25',stroke:'#f472b6'},rl:'有問題 →',
+     loopTo:'n15',loopLbl:'修正後重新測試',dl:'通過 ↓'},
+  ]},
+  {id:'p5',label:'PHASE 5  ·  UAT 客戶驗收',nodes:[
+    {id:'n17',sub:'部署 UAT 🚧',cmd:'17 · /uat-deploy',done:0},
+    {id:'n18',sub:'客戶驗收 ✓',cmd:'18 · /uat-test',done:1},
+    {id:'d04',t:'gate',label:'驗收結果',
+     right:{id:'n19',label:'/uat-fix  修正後重新驗收 🚧',c:'#9ae6b4',bg:'#0a2d1a',stroke:'#34d399'},rl:'有問題 →',
+     loopTo:'n18',loopLbl:'修正後重新驗收',dl:'通過 ↓'},
+  ]},
+  {id:'p6',label:'PHASE 6  ·  正式上線',nodes:[
+    {id:'n20',sub:'正式部署 🚧',cmd:'20 · /prod-deploy',done:0},
+    {id:'end1',t:'terminal',label:'🏁 專案結案'},
+  ]},
+];
+
+/* ── Helpers ────────────────────────────────────────────── */
+function p(n){return Math.round(n);}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var out=[];
+function o(s){out.push(s);}
+
+/* ── Pass 1: calculate Y positions ─────────────────────── */
+var pos={};   // id → {cx,cy,topY,botY,w,h,t}
+var phMeta=[]; // per-phase: {ph,pc,y,h,contentY,lastBot,forkY,joinY,mergeTop}
+var gy=0;
+
+for(var pi=0;pi<FLOW.length;pi++){
+  var ph=FLOW[pi], pc=PC[ph.id];
+  var phTop=gy;
+  var cy0=phTop+PH_LBL+PH_T; // content start Y
+  var lastBot;
+
+  if(ph.parallel){
+    var forkY=cy0;
+    var laneY=forkY+28;         // after fork-bar + stems
+    var maxBot=laneY;
+    for(var li=0;li<ph.lanes.length;li++){
+      var lane=ph.lanes[li], iy=laneY;
+      for(var ni=0;ni<lane.nodes.length;ni++){
+        var nd=lane.nodes[ni];
+        pos[nd.id]={cx:lane.x,cy:iy+NH/2,topY:iy,botY:iy+NH,w:LNW,t:'rect'};
+        iy+=NH+VGAP;
+      }
+      if(iy-VGAP>maxBot) maxBot=iy-VGAP;
+    }
+    var joinY=maxBot+28;
+    var mTop=joinY+13;
+    pos[ph.merge.id]={cx:CX,cy:mTop+NH/2,topY:mTop,botY:mTop+NH,w:NW,t:'rect'};
+    lastBot=mTop+NH;
+    phMeta.push({ph:ph,pc:pc,y:phTop,contentY:cy0,lastBot:lastBot,forkY:forkY,joinY:joinY,mTop:mTop});
+  } else {
+    var iy=cy0;
+    for(var ni=0;ni<ph.nodes.length;ni++){
+      var nd=ph.nodes[ni];
+      if(nd.t==='gate'){
+        pos[nd.id]={cx:CX,cy:iy+DH,topY:iy,botY:iy+DH*2,t:'gate'};
+        if(nd.right) pos[nd.right.id]={cx:ACX,cy:iy+DH,topY:iy+DH-AH/2,botY:iy+DH+AH/2,w:AW,t:'dead'};
+        iy+=DH*2+VGAP;
+      } else if(nd.t==='terminal'){
+        pos[nd.id]={cx:CX,cy:iy+17,topY:iy,botY:iy+34,t:'terminal'};
+        iy+=34+VGAP;
+      } else {
+        pos[nd.id]={cx:CX,cy:iy+NH/2,topY:iy,botY:iy+NH,w:NW,t:'rect'};
+        iy+=NH+VGAP;
+      }
+    }
+    lastBot=iy-VGAP;
+    phMeta.push({ph:ph,pc:pc,y:phTop,contentY:cy0,lastBot:lastBot});
+  }
+  var phH=lastBot+PH_B-phTop;
+  phMeta[phMeta.length-1].h=phH;
+  gy=phTop+phH;
+}
+var totalH=gy;
+
+/* ── Pass 2: render ─────────────────────────────────────── */
+
+// SVG open + defs
+o('<svg viewBox="0 0 '+W+' '+p(totalH)+'" width="100%" style="min-width:420px;max-width:780px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg" font-family="\'Segoe UI\',system-ui,sans-serif">');
+o('<defs><marker id="ah" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0.5 L9,4 L0,7.5 Z" fill="'+AC+'"/></marker></defs>');
+
+// Phase bands + dividers + labels
+for(var i=0;i<phMeta.length;i++){
+  var m=phMeta[i];
+  o('<rect x="0" y="'+p(m.y)+'" width="'+W+'" height="'+p(m.h)+'" fill="'+m.pc.bg+'"/>');
+}
+for(var i=1;i<phMeta.length;i++){
+  o('<line x1="0" y1="'+p(phMeta[i].y)+'" x2="'+W+'" y2="'+p(phMeta[i].y)+'" stroke="#2e3249" stroke-width="1"/>');
+}
+for(var i=0;i<phMeta.length;i++){
+  var m=phMeta[i];
+  o('<text x="14" y="'+p(m.y+20)+'" fill="'+m.pc.c+'" font-size="11" font-weight="700" letter-spacing=".07em">'+esc(m.ph.label)+'</text>');
+}
+
+// ── Arrows ──
+
+function arrowV(x,y1,y2,dash){
+  var d=dash?' stroke-dasharray="5,4"':'';
+  o('<line x1="'+p(x)+'" y1="'+p(y1)+'" x2="'+p(x)+'" y2="'+p(y2)+'" stroke="'+AC+'" stroke-width="1.5"'+d+' marker-end="url(#ah)"/>');
+}
+function arrowH(x1,y,x2){
+  o('<line x1="'+p(x1)+'" y1="'+p(y)+'" x2="'+p(x2)+'" y2="'+p(y)+'" stroke="'+AC+'" stroke-width="1.5" marker-end="url(#ah)"/>');
+}
+function lineH(x1,y,x2){
+  o('<line x1="'+p(x1)+'" y1="'+p(y)+'" x2="'+p(x2)+'" y2="'+p(y)+'" stroke="'+AC+'" stroke-width="1.5"/>');
+}
+function lineV(x,y1,y2){
+  o('<line x1="'+p(x)+'" y1="'+p(y1)+'" x2="'+p(x)+'" y2="'+p(y2)+'" stroke="'+AC+'" stroke-width="1.5"/>');
+}
+
+for(var pi=0;pi<FLOW.length;pi++){
+  var ph=FLOW[pi], m=phMeta[pi], pc=m.pc;
+
+  if(ph.parallel){
+    // Fork bar + lane stems
+    var lxs=ph.lanes.map(function(l){return l.x;});
+    lineH(lxs[0],m.forkY,lxs[lxs.length-1]);
+    for(var li=0;li<ph.lanes.length;li++) arrowV(lxs[li],m.forkY,m.forkY+28);
+    // Lane dividers
+    o('<line x1="265" y1="'+p(m.forkY-5)+'" x2="265" y2="'+p(m.joinY+5)+'" stroke="#2e3249" stroke-width="1" stroke-dasharray="3,5"/>');
+    o('<line x1="530" y1="'+p(m.forkY-5)+'" x2="530" y2="'+p(m.joinY+5)+'" stroke="#2e3249" stroke-width="1" stroke-dasharray="3,5"/>');
+    // Lane labels
+    for(var li=0;li<ph.lanes.length;li++){
+      o('<text x="'+p(ph.lanes[li].x)+'" y="'+p(m.forkY+15)+'" text-anchor="middle" fill="#a0aec0" font-size="9.5">'+esc(ph.lanes[li].label)+'</text>');
+    }
+    // Lane internal arrows
+    for(var li=0;li<ph.lanes.length;li++){
+      var lane=ph.lanes[li];
+      for(var ni=0;ni<lane.nodes.length-1;ni++){
+        var p1=pos[lane.nodes[ni].id], p2=pos[lane.nodes[ni+1].id];
+        arrowV(lane.x,p1.botY,p2.topY);
+      }
+    }
+    // Merge to join bar
+    for(var li=0;li<ph.lanes.length;li++){
+      var last=ph.lanes[li].nodes[ph.lanes[li].nodes.length-1];
+      lineV(lxs[li],pos[last.id].botY,m.joinY);
+    }
+    lineH(lxs[0],m.joinY,lxs[lxs.length-1]);
+    arrowV(CX,m.joinY,m.mTop);
+
+  } else {
+    var nodes=ph.nodes;
+    for(var ni=0;ni<nodes.length;ni++){
+      var nd=nodes[ni], np=pos[nd.id];
+      // Arrow from previous node down to this one (skip first, handled by cross-phase or gate-down)
+      if(ni>0){
+        var prev=nodes[ni-1], pp=pos[prev.id];
+        if(prev.t!=='gate'){ // gate handles its own down arrow
+          arrowV(CX,pp.botY,np.topY);
+        }
+      }
+      if(nd.t==='gate'){
+        // Right arrow + label
+        if(nd.right){
+          arrowH(CX+DS,np.cy,AX-1);
+          o('<text x="'+p(CX+DS+4)+'" y="'+p(np.cy-3)+'" fill="#fc8181" font-size="9.5">'+esc(nd.rl)+'</text>');
+        }
+        // Down arrow + label
+        var downTarget=null;
+        if(ni<nodes.length-1) downTarget=nodes[ni+1];
+        else {
+          // Cross-phase: find first node of next phase
+          var npm=phMeta[pi+1];
+          if(npm){ downTarget=npm.ph.parallel ? {id:'_p3fork'} : npm.ph.nodes[0]; }
+        }
+        if(downTarget){
+          var dpy=downTarget.id==='_p3fork' ? phMeta[pi+1].forkY : pos[downTarget.id].topY;
+          var isDash=(ni===nodes.length-1);
+          var d=isDash?' stroke-dasharray="5,4"':'';
+          o('<line x1="'+p(CX)+'" y1="'+p(np.botY)+'" x2="'+p(CX)+'" y2="'+p(dpy)+'" stroke="'+AC+'" stroke-width="1.5"'+d+' marker-end="url(#ah)"/>');
+          if(nd.dl) o('<text x="'+p(CX+4)+'" y="'+p(np.botY+(dpy-np.botY)*0.55)+'" fill="#34d399" font-size="9">'+esc(nd.dl)+'</text>');
+        }
+        // Loop polyline (fix → test loop-back)
+        if(nd.loopTo && nd.right){
+          var fixP=pos[nd.right.id], loopP=pos[nd.loopTo];
+          o('<polyline points="'+p(AX+AW)+','+p(fixP.cy)+' '+p(LX)+','+p(fixP.cy)+' '+p(LX)+','+p(loopP.cy)+' '+p(CX+NW/2+2)+','+p(loopP.cy)+'" stroke="'+AC+'" stroke-width="1.5" stroke-dasharray="5,3" fill="none" marker-end="url(#ah)"/>');
+          o('<text x="'+p(LX+4)+'" y="'+p((fixP.cy+loopP.cy)/2)+'" fill="#718096" font-size="9" text-anchor="middle" transform="rotate(-90,'+p(LX+4)+','+p((fixP.cy+loopP.cy)/2)+')">'+esc(nd.loopLbl)+'</text>');
+        }
+      }
+    }
+  }
+
+  // Cross-phase dashed arrow (non-gate last node → next phase first node)
+  if(pi<FLOW.length-1){
+    var lastNd=ph.parallel ? ph.merge : ph.nodes[ph.nodes.length-1];
+    if(!ph.parallel && lastNd.t==='gate') continue; // gate draws its own cross arrow
+    var fromY=pos[lastNd.id].botY;
+    var npm=phMeta[pi+1];
+    var toY=npm.ph.parallel ? npm.forkY : pos[npm.ph.nodes[0].id].topY;
+    o('<line x1="'+p(CX)+'" y1="'+p(fromY)+'" x2="'+p(CX)+'" y2="'+p(toY)+'" stroke="'+AC+'" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ah)"/>');
+  }
+}
+
+// ── Nodes ──
+
+for(var pi=0;pi<FLOW.length;pi++){
+  var ph=FLOW[pi], m=phMeta[pi], pc=m.pc;
+
+  function drawProcessNode(nd,pcl,cx,nw){
+    var np=pos[nd.id];
+    var x=p(cx-nw/2), y=p(np.topY);
+    var dash=nd.done?'':'5,3';
+    var dattr=dash?' stroke-dasharray="'+dash+'"':'';
+    o('<rect x="'+x+'" y="'+y+'" width="'+p(nw)+'" height="'+NH+'" rx="5" fill="'+pcl.nb+'" stroke="'+pcl.c+'" stroke-width="1.5"'+dattr+'/>');
+    o('<text x="'+p(cx)+'" y="'+p(np.topY+12)+'" text-anchor="middle" fill="'+pcl.ns+'" font-size="9">'+esc(nd.sub)+'</text>');
+    o('<text x="'+p(cx)+'" y="'+p(np.topY+26)+'" text-anchor="middle" fill="'+pcl.nt+'" font-size="11">'+esc(nd.cmd)+'</text>');
+  }
+
+  if(ph.parallel){
+    // Lane nodes
+    for(var li=0;li<ph.lanes.length;li++){
+      var lane=ph.lanes[li];
+      for(var ni=0;ni<lane.nodes.length;ni++) drawProcessNode(lane.nodes[ni],pc,lane.x,LNW);
+    }
+    // Merge node
+    drawProcessNode(ph.merge,pc,CX,NW);
+  } else {
+    for(var ni=0;ni<ph.nodes.length;ni++){
+      var nd=ph.nodes[ni], np=pos[nd.id];
+      if(nd.t==='gate'){
+        // Diamond
+        o('<polygon points="'+p(CX)+','+p(np.topY)+' '+p(CX+DS)+','+p(np.cy)+' '+p(CX)+','+p(np.botY)+' '+p(CX-DS)+','+p(np.cy)+'" fill="#1a1d27" stroke="'+AC+'" stroke-width="1.5"/>');
+        o('<text x="'+p(CX)+'" y="'+p(np.cy)+'" text-anchor="middle" dy="0.35em" fill="#a0aec0" font-size="9.5">'+esc(nd.label)+'</text>');
+        // Right dead node
+        if(nd.right){
+          var r=nd.right, rp=pos[r.id];
+          var rs=r.stroke?' stroke="'+r.stroke+'"':' stroke="'+r.c+'"';
+          o('<rect x="'+p(AX)+'" y="'+p(rp.topY)+'" width="'+AW+'" height="'+AH+'" rx="4" fill="'+r.bg+'"'+rs+' stroke-width="1"/>');
+          o('<text x="'+p(ACX)+'" y="'+p(rp.cy)+'" text-anchor="middle" dy="0.35em" fill="'+r.c+'" font-size="10">'+esc(r.label)+'</text>');
+        }
+      } else if(nd.t==='terminal'){
+        o('<rect x="'+p(CX-60)+'" y="'+p(np.topY)+'" width="120" height="34" rx="17" fill="'+pc.nb+'" stroke="'+pc.c+'" stroke-width="2"/>');
+        o('<text x="'+p(CX)+'" y="'+p(np.cy)+'" text-anchor="middle" dy="0.35em" fill="'+pc.nt+'" font-size="13" font-weight="700">'+esc(nd.label)+'</text>');
+      } else {
+        drawProcessNode(nd,pc,CX,NW);
+      }
+    }
+  }
+}
+
+// Legend
+var lY=p(totalH-22);
+o('<rect x="14" y="'+lY+'" width="470" height="18" rx="4" fill="#1a1d27" stroke="#2e3249" stroke-width="1"/>');
+o('<rect x="24" y="'+p(lY+4)+'" width="18" height="9" rx="2" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5"/>');
+o('<text x="48" y="'+p(lY+13)+'" fill="#a0aec0" font-size="9">✓ 完整 SKILL</text>');
+o('<rect x="112" y="'+p(lY+4)+'" width="18" height="9" rx="2" fill="#1e1745" stroke="#6c63ff" stroke-width="1.5" stroke-dasharray="4,2"/>');
+o('<text x="136" y="'+p(lY+13)+'" fill="#a0aec0" font-size="9">🚧 草稿</text>');
+o('<rect x="182" y="'+p(lY+4)+'" width="15" height="9" rx="2" fill="#1c1010" stroke="#f87171" stroke-width="1"/>');
+o('<text x="203" y="'+p(lY+13)+'" fill="#a0aec0" font-size="9">流程終止</text>');
+o('<polygon points="250,'+p(lY+4)+' 258,'+p(lY+8.5)+' 250,'+p(lY+13)+' 242,'+p(lY+8.5)+'" fill="#1a1d27" stroke="'+AC+'" stroke-width="1.2"/>');
+o('<text x="264" y="'+p(lY+13)+'" fill="#a0aec0" font-size="9">決策點</text>');
+o('<line x1="304" y1="'+p(lY+8.5)+'" x2="322" y2="'+p(lY+8.5)+'" stroke="'+AC+'" stroke-width="1.5" stroke-dasharray="4,3"/>');
+o('<text x="328" y="'+p(lY+13)+'" fill="#a0aec0" font-size="9">階段轉換</text>');
+o('<line x1="383" y1="'+p(lY+8.5)+'" x2="401" y2="'+p(lY+8.5)+'" stroke="'+AC+'" stroke-width="1.5" stroke-dasharray="5,3"/>');
+o('<text x="407" y="'+p(lY+13)+'" fill="#718096" font-size="9">修正回圈</text>');
+
+o('</svg>');
+document.getElementById('flow-svg-container').innerHTML=out.join('');
+})();
+</script>
 </body>
 </html>
