@@ -24,6 +24,15 @@ description: 實作進行階段 - F2E 前端實作。根據 UX/UI 設計稿與 B
 - 特殊功能有獨立 PDF（例：`000商品序號登錄流程.pdf`、`店家後台.pdf`）
 - Final 資料夾 = 客戶確認後的最終交付版本，F2E 以此為準
 
+**已知**：前端分批打包交付格式
+- 大型系統依批次/階段分批交付（P1-1, P1-2, P2...），每批次獨立打包
+- 每批打包內容包含：
+  - **source code**（zip，含 Angular/Vue/React 等框架原始碼）
+  - **wireframe 參照檔**（供 IT 整合對照）
+  - **程式清單 PPT**（逐 component/資料夾說明結構，方便客戶 IT 接手維護）
+- 打包檔可加密：密碼另行傳送（PW.txt 或 email），不放在同一個包裡
+- 每批交付時同步產出 **DemoSite 驗收文件**：列出驗收網址、驗收項目（逐頁截圖比對 wireframe），供 SIT 流程使用
+
 ### 關於與 B2E 協作
 - API 尚未完成時，F2E 如何 mock 資料（MSW / json-server）？
 - API 文件不清楚時的溝通方式？
