@@ -40,6 +40,4 @@ description: 內部測試 SIT 階段 - 修正功能與 Bug。修正後回 /sit-t
 - [ ] UAT 進場條件達標
 
 ## 下一步
-修正完成 → 回到 `/sit-test` 重新執行驗證（迭代直到 P0/P1 清零）
-
-P0/P1 清零確認後 → `/uat-deploy`
+修正後 → `/sit-test`（迭代）
