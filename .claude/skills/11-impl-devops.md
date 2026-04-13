@@ -50,4 +50,4 @@ description: 實作進行階段 - DevOps Infra 工程。規劃並建置雲端或
 - [ ] 環境文件已建立
 
 ## 下一步
-`/alpha-deploy`（SIT 部署）
+`/sit-test`（SIT 部署）

@@ -1,9 +1,9 @@
 ---
-name: beta-uat
-description: 客戶驗收 Beta 階段 - 客戶執行驗收。準備驗收單與測試清單，引導客戶自行測試，收集回饋，取得簽核。
+name: uat-test
+description: 客戶驗收 UAT 階段 - 客戶執行驗收。準備驗收單與測試清單，引導客戶自行測試，收集回饋，取得簽核。
 ---
 
-# Beta 階段 - 客戶驗收執行
+# UAT 階段 - 客戶驗收執行
 
 ## 前置條件
 - Alpha 修正完成，功能已部署至 PROD（或 Beta 環境）
@@ -120,6 +120,6 @@ SugarFun Project Manager: Signature___ Name___ Date___
 - [ ] 驗收單已由雙方簽署
 
 ## 下一步
-- 有驗收問題 → `/beta-fix`
+- 有驗收問題 → `/uat-fix`
 - 有 CR → 另開追加報價（`/proposal-quote`）
 - 全數通過 → `/prod-deploy`

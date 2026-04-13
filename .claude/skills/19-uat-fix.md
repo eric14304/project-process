@@ -1,9 +1,9 @@
 ---
-name: beta-fix
-description: 客戶驗收 Beta 階段 - 修正客戶反饋。處理客戶驗收問題，修正後回 SIT 驗證再更新至 UAT，迭代至驗收通過。
+name: uat-fix
+description: 客戶驗收 UAT 階段 - 修正客戶反饋。處理客戶驗收問題，修正後回 SIT 驗證再更新至 UAT，迭代至驗收通過。
 ---
 
-# Beta 階段 - 修正客戶反饋迭代
+# UAT 階段 - 修正客戶反饋迭代
 
 > 🚧 草稿待完善 — 以下為待確認問題清單
 

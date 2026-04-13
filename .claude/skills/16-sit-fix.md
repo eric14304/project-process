@@ -1,9 +1,9 @@
 ---
-name: alpha-fix
-description: 內部測試 Alpha 階段 - 修正功能與 Bug。修正後回 /alpha-test 重新驗證，迭代直到 P0/P1 清零達到 Beta 進場條件。
+name: sit-fix
+description: 內部測試 SIT 階段 - 修正功能與 Bug。修正後回 /sit-test 重新驗證，迭代直到 P0/P1 清零達到 UAT 進場條件。
 ---
 
-# Alpha 階段 - 修正迭代
+# SIT 階段 - 修正迭代
 
 > 🚧 草稿待完善 — 以下為待確認問題清單
 
@@ -16,7 +16,7 @@ description: 內部測試 Alpha 階段 - 修正功能與 Bug。修正後回 /alp
 
 ### 關於迭代循環
 - 修正 → 重新部署 → 重新測試的循環頻率（每天/每功能模組）？
-- 何時判斷 Alpha 通過、可以進入 Beta？條件是什麼（P0/P1 清零）？
+- 何時判斷 SIT 通過、可以進入 UAT？條件是什麼（P0/P1 清零）？
 
 ### 關於溝通
 - 修正進度如何同步給 PM/Sales（每日 Slack 更新）？
@@ -32,14 +32,14 @@ description: 內部測試 Alpha 階段 - 修正功能與 Bug。修正後回 /alp
 3. 修正完成驗證
 4. 重新測試確認
 5. 更新測試報告
-6. 判斷是否進入 Beta
+6. 判斷是否進入 UAT
 
 ## 完成條件（TBD）
 - [ ] P0/P1 問題全數修正
 - [ ] 測試報告更新
-- [ ] Beta 進場條件達標
+- [ ] UAT 進場條件達標
 
 ## 下一步
-修正完成 → 回到 `/alpha-test` 重新執行驗證（迭代直到 P0/P1 清零）
+修正完成 → 回到 `/sit-test` 重新執行驗證（迭代直到 P0/P1 清零）
 
-P0/P1 清零確認後 → `/beta-deploy`
+P0/P1 清零確認後 → `/uat-deploy`

@@ -1,9 +1,9 @@
 ---
-name: beta-deploy
-description: 客戶驗收 Beta 階段 - DevOps 部署至 UAT 環境。將通過 Alpha 的版本部署至 UAT，開放客戶驗收。
+name: uat-deploy
+description: 客戶驗收 UAT 階段 - DevOps 部署至 UAT 環境。將通過 SIT 的版本部署至 UAT，開放客戶驗收。
 ---
 
-# Beta 階段 - 部署至 UAT 環境
+# UAT 階段 - 部署至 UAT 環境
 
 > 🚧 草稿待完善 — 以下為待確認問題清單
 
@@ -40,4 +40,4 @@ description: 客戶驗收 Beta 階段 - DevOps 部署至 UAT 環境。將通過 
 - [ ] 驗收時程確認
 
 ## 下一步
-`/beta-uat`（客戶驗收執行）
+`/uat-test`（客戶驗收執行）

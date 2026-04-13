@@ -1,9 +1,9 @@
 ---
-name: alpha-report
-description: 內部測試 Alpha 階段 - 產生測試/驗收報告。根據 SOW 功能清單自動產出測試案例與驗收報告框架。
+name: sit-report
+description: 內部測試 SIT 階段 - 產生測試/驗收報告。根據 SOW 功能清單自動產出測試案例與驗收報告框架。
 ---
 
-# Alpha 階段 - 測試/驗收報告
+# SIT 階段 - 測試/驗收報告
 
 > 🚧 草稿待完善 — 以下為待確認問題清單
 
@@ -40,4 +40,4 @@ description: 內部測試 Alpha 階段 - 產生測試/驗收報告。根據 SOW 
 - [ ] 測試人員分配完成
 
 ## 下一步
-`/alpha-test`
+`/sit-test`
