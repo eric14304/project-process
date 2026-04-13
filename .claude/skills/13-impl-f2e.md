@@ -30,8 +30,21 @@ description: 實作進行階段 - F2E 前端實作。根據 UX/UI 設計稿與 B
   - **source code**（zip，含 Angular/Vue/React 等框架原始碼）
   - **wireframe 參照檔**（供 IT 整合對照）
   - **程式清單 PPT**（逐 component/資料夾說明結構，方便客戶 IT 接手維護）
+  - **前端相關文件 docx**（技術參考文件，記錄安裝環境配置 + 每個 component 的路徑、說明與使用範例，供客戶 IT 開發人員接手後使用）
+  > 程式清單 PPT（結構 Overview）與前端相關文件 docx（Component API 參考）是兩份不同的交付物，分工不同，不可混淆
 - 打包檔可加密：密碼另行傳送（PW.txt 或 email），不放在同一個包裡
 - 每批交付時同步產出 **DemoSite 驗收文件**：列出驗收網址、驗收項目（逐頁截圖比對 wireframe），供 SIT 流程使用
+  - 文件結構：Demo 網址 → 本批次驗收功能範圍清單 → PC 畫面（逐功能截圖）→ Mobile 畫面（逐功能截圖）
+  - 截圖命名格式：`{功能區塊} - {子功能/狀態}`（例：首頁 - Banner、職缺內頁 - 空值狀態）
+  - 若測試環境有技術限制（如 LINE 分享被封鎖、測試 IP 限制），需在對應截圖項下附文字說明原因
+
+**已知**：版控記錄追蹤（大型案需雙軌追蹤）
+- SF 每次 source code 交付使用 **git commit hash** 作為版本識別
+  - 命名格式：`{客戶}_{專案}_{hash}_sourcecode_{日期}.zip`（例：`cathay_imatch2025_sourcecode_a1b2c3d4.zip`）
+  - 附有加密密碼時，密碼檔命名：`{原檔名}_密碼.zip` 或 `PW.txt` 另行傳送
+- 客戶 IT 合版後有獨立的 build ID（例：`fnd-web-imatch_364546.zip`）
+- 需在版控記錄表中追蹤 **SF 交付 hash ↔ 客戶 IT build 編號** 的對應關係，避免 merge 時版本混淆
+- 每次 delivery 紀錄：日期 / SF 打包檔（含 hash）/ 客戶合版檔 / 說明（含哪些 Phase/Layer/功能）
 
 ### 關於與 B2E 協作
 - API 尚未完成時，F2E 如何 mock 資料（MSW / json-server）？

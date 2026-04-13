@@ -4,6 +4,44 @@
 
 ---
 
+## 2026-04-14（二十六次更新）
+
+- **優化**：`00-skill-optimizer.md`
+  - 「未完整閱讀須主動告知」補充加密文件處理規則：header `d0cf11e0` + `EncryptedPackage` stream = 加密（需詢問密碼），不可標記為「格式無法解析」；無 EncryptedPackage 才是真正 binary 無法讀取
+  - 建議用 olefile 掃描腳本一次偵測所有加密文件再批次解密
+  - 觸發來源：本輪 43 個加密 .pptx/.docx 原被誤判為「compound doc 無法讀取」，取得密碼後全數成功解密並帶出大量 SKILL 新知識
+
+---
+
+## 2026-04-14（二十五次更新）
+
+- **優化**：`13-impl-f2e.md`
+  - 打包交付物補充「前端相關文件 docx」：技術 component 參考文件（安裝環境 + component 路徑/說明/使用範例），與程式清單 PPT（結構 Overview）用途不同，為兩份獨立交付物
+  - 版控記錄追蹤格式：hash-based source code 命名（`{客戶}_{專案}_{hash}_sourcecode_{日期}.zip`）+ 客戶 IT build ID 雙軌對應
+  - DemoSite 驗收文件結構：驗收說明 → 範圍清單 → PC 截圖 → Mobile 截圖；技術限制需附文字說明
+  - 觸發來源：國泰 iMatch F2E/前端相關文件 v1-v3、版控記錄 Excel（含 hash ↔ build ID 對應）、DemoSite 驗收文件多批次
+
+- **優化**：`20-beta-uat.md`
+  - SIT 驗收文件結構具體化：按批次（第一批/第二批...）/ PC+Mobile 各自截圖 / 截圖命名格式 / 技術限制說明
+  - Bug 追蹤雙軌制：SF 內部 #XXX + 客戶 TFS ID；嚴重度 1/2/3；欄位：批次層/功能/區域/修復日/確認日
+  - 弱點掃描報告格式：兩份獨立報告（Security Hotspots + Issue List）；Executive Summary + 逐項說明；三種狀態（Fixed/False Positive/Won't Fix）；客戶 IT 既有程式碼由客戶決定
+  - 觸發來源：國泰 iMatch SIT 驗收文件 v1-v5、第1階段優化項目追蹤表（bug 雙軌 ID）、弱點掃描調整報告兩份
+
+---
+
+## 2026-04-14（二十次更新）
+
+- **優化**：`08-impl-prep-kickoff.md`
+  - Step 1 新增「供應商資安問卷」前置說明：大型企業（如金融業）在 Kickoff 前可能要求填寫約 20 題資安問卷（YES/NO/NA）；若 SF 範疇為前台+API串接無後端，多數主機相關題答 N/A
+  - Step 2 新增「企業 Kickoff 溝通規範 slide」：工具矩陣（LINE/Email/Azure DevOps 等）、Email 主旨命名格式（`{專案}_DDL{日期}_{批次}_{平台}_{類型}_{功能}`）、站會節奏（每週二、四上午，每次半小時）、雙週進度彙整表
+  - 觸發來源：國泰 iMatch 4 版 Kickoff PPT（0617/0620CUB/0623SF），Slide 18 明確列出工具矩陣與 Email 命名規範
+
+- **優化**：`06-impl-prep-sow.md`
+  - 第十一條 CR 申請單補充：申請單編號格式（年月日+流水號，例 2025071501）、需求緊急性欄位（一般/緊急）、申請單底部需顯示本次工時/總工時池/剩餘工時池三欄
+  - 觸發來源：國泰 iMatch CR 申請單（2025071501，200h 總池 → 本次 96h → 剩餘 104h）
+
+---
+
 ## 2026-04-14（十七次更新）
 
 - **補充草稿內容**：`13-impl-f2e.md`
